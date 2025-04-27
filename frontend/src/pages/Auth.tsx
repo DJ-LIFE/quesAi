@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import './auth.css';
+import '../styles/pages/auth.css';
 const Auth = () => {
 	const navigate = useNavigate();
   return (
-    <div className="container">
+    <div className="auth__container">
       <div className="hero">
         <div className="background_img">
           <div className="hero_text">

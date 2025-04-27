@@ -25,10 +25,10 @@ const signup = async (req, res) => {
         const isProduction = process.env.NODE_ENV === 'production';
         res.cookie('token', token, { httpOnly: true, secure: isProduction });
 
-        res.status(201).json({ message: 'User created successfully', token });
+        res.status(201).json({ success:true, message: 'User created successfully', token });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({ success:false, message: 'Internal server error' });
         
     }
 

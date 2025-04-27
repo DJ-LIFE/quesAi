@@ -1,4 +1,5 @@
-.container {
+/* filepath: d:\Projects\openSource\skailama\frontend\src\styles\pages\auth.css */
+.auth__container {
     display: flex;
     margin: 0 auto;
     height: 100vh;
@@ -9,7 +10,7 @@
     overflow: hidden;   
 }
 .background_img {
-    background-image: url('./heroImg.svg');
+    background-image: url('../../pages/heroImg.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -117,6 +118,3 @@
     color: #085FCE;
     text-decoration: underline
 }
-
-
-
