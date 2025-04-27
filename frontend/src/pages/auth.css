@@ -1,0 +1,122 @@
+.container {
+    display: flex;
+    margin: 0 auto;
+    height: 100vh;
+}
+.hero {
+    width: 180%;
+    background: linear-gradient(to top right, #3A0B63, #C854FF);  
+    overflow: hidden;   
+}
+.background_img {
+    background-image: url('./heroImg.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    height: 100%;
+}
+.hero_text {
+    color: white;
+    padding:7rem 20px;
+    margin: 0 4rem;
+    
+}
+.hero_text h1 {
+    font-size: 5rem;
+    font-weight: 200;
+    text-align: center;
+    text-align: left;
+}
+.hero_text p {
+    font-size: 2rem;
+    font-weight: 200;
+    text-align: center;
+    text-align: left;
+}
+
+.logo {
+    height: 100px;
+    width: 100px;
+    padding: 20px;
+}
+.auth {
+    width: 100%;
+    margin: 0 auto;
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+.login_text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.auth h2 {
+    color: var(--color-primary);
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+}
+.welcome_text {
+    color: var(--color-primary);
+    font-size: 2.5rem;
+    font-weight: lighter;
+}
+.authFields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+.authFields input {
+    padding: 16px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: medium;
+    font-weight: 700;
+    
+}
+.authFields input::placeholder {
+    color: #aaa;
+}
+.authFields input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+.checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
+.checkbox p {
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.authFields button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--color-primary);
+    color: white;
+    font-size: medium;
+    font-weight: 700;
+    cursor: pointer;
+}
+.authFields button:hover {
+    background-color: #5B21B6;
+}
+
+.forgot-password {
+    color: #085FCE;
+    text-decoration: underline
+}
+
+
+

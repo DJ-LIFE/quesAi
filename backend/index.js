@@ -2,8 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const router = require('./src/routes/index');
-
+const cookieParser = require('cookie-parser');
+require('dotenv').config();
 app.use(express.json());
+
+app.use(cookieParser());
 
 const connectToDb = async () => {
     try {
