@@ -1,0 +1,12 @@
+.sidebar__container {
+    width: 400px;
+    height: 100vh;
+    margin: 0;
+    border: 1px solid #ccc;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}

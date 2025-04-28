@@ -1,6 +1,8 @@
 import NewProjectLayout from './NewProjectLayout';
 import '../../styles/pages/projects.css';
+import { useNavigate } from 'react-router-dom';
 export const Projects = () => {
+    const navigate = useNavigate();
   return (
     <NewProjectLayout>
       <div>
@@ -10,7 +12,7 @@ export const Projects = () => {
             <span className="button__plus">+</span>Create new project
           </button>
         </div>
-        <div className="project__card">
+        <div className="project__card" onClick={() => navigate('/upload')}>
             <div>PT</div>
             <div>
                 <p>Project Title</p>

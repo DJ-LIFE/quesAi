@@ -1,9 +1,13 @@
-.upload__container {
+.uploadLayout__container {
+    display: flex;
+    
+}
+.uploadLayout__content--container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #F9F9F9;
     display: flex;
     flex-direction: column;
-    padding: 20px;
 }
 
-.upload__container > div {
-    margin: 10px 0;
-}

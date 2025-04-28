@@ -1,0 +1,9 @@
+.breadcrumbs__container {
+  display: flex;
+  align-items: center;
+  padding: 16px
+}
+
+.breadcrumbs__container span {
+  margin-right: 5px;
+}
