@@ -2,7 +2,7 @@ import UploadLayout from './newProject/UploadLayout';
 import '../styles/pages/upload.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import usePodcastStore from '../stores/usepodcastStore';
+import usePodcastStore from '../stores/usePodcastStore';
 
 const Upload = () => {
   const [popup, setPopup] = useState(false);
@@ -106,7 +106,7 @@ const Upload = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {episodes.map((episode, index) => (
+                  {episodes.map((episode: any, index: number) => (
                     <tr key={episode._id}>
                       <td>{index + 1}</td>
                       <td>{episode.title}</td>
