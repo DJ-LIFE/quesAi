@@ -8,6 +8,7 @@ const Upload = () => {
   const [popup, setPopup] = useState(false);
   const [title, setTitle] = useState('');
   const [transcript, setTranscript] = useState('');
+  const [popupTitle, setPopupTitle] = useState('Upload Episode');
   const navigate = useNavigate();
   
   const { 
@@ -46,13 +47,23 @@ const Upload = () => {
     }
   };
 
+  const handleCardClick = (cardTitle: string) => {
+    setPopupTitle(`Upload from ${cardTitle}`);
+    setPopup(true);
+  };
+
   return (
     <UploadLayout>
       <div className="upload__container">
         <h1>Add Podcast Episode for {currentPodcast?.title}</h1>
         <div className="uploadData__container">
           {uploadData.map((data, index) => (
-            <div key={index} className="uploadData__card">
+            <div 
+              key={index} 
+              className="uploadData__card" 
+              onClick={() => handleCardClick(data.title)}
+              style={{ cursor: 'pointer' }}
+            >
               <div className="uploadData__card--text">
                 <h5>{data.title}</h5>
                 <p>{data.description}</p>
@@ -118,17 +129,17 @@ const Upload = () => {
           <div className="popup__container">
             <div className="popup__content">
               <div className='popup__header'>
-                <p>Add New Episode</p>{' '}
-                <button onClick={() => setPopup(false)}>X</button>
+                <p>{popupTitle}</p>{' '}
+                <button onClick={() => setPopup(false)} style={{backgroundColor: 'transparent', color: 'black', fontSize: '1.2rem'}}>X</button>
               </div>
               <div className="popup__input--container">
-                <label htmlFor="title">Title</label>
+                <label htmlFor="title">Name</label>
                 <input 
                   type="text" 
                   id="title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  placeholder="Enter episode title" 
+                  placeholder="Enter video name" 
                 />
               </div>
               <div className="popup__input--container">
@@ -137,16 +148,19 @@ const Upload = () => {
                   id="transcript"
                   value={transcript}
                   onChange={(e) => setTranscript(e.target.value)}
-                  placeholder="Enter episode transcript"
+                  placeholder="Enter transcript"
                   rows={5}
                 />
               </div>
-              <button 
-                onClick={handleSubmit}
-                disabled={isLoading || !title.trim() || !transcript.trim()}
-              >
-                {isLoading ? 'Creating...' : 'Create Episode'}
-              </button>
+              <div className="popup__footer">
+                <button 
+                  className="upload-btn"
+                  onClick={handleSubmit}
+                  disabled={isLoading || !title.trim() || !transcript.trim()}
+                >
+                  Upload
+                </button>
+              </div>
             </div>
           </div>
         )}

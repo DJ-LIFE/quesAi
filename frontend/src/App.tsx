@@ -23,7 +23,7 @@ function App() {
               <Upload />
             </ProtectedRoute>
           } />
-          <Route path="/podcast/:id" element={
+          <Route path="/podcast/:podcastId/episode/:episodeId" element={
             <ProtectedRoute>
               <ViewPodcast />
             </ProtectedRoute>
