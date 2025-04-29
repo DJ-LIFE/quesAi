@@ -20,7 +20,7 @@ const SideBar = () => {
   return (
     <div className="sidebar__container">
       <div className="sidebar__content">
-        <span>
+        <span className="sidebar__logo">
           <Logo height='40' width='250' />
         </span>
         <SideBarItem />
@@ -90,18 +90,18 @@ const sideBarData = [
     id: 2,
     name: 'Create and Repurpose',
     icon: <Pen />,
-    path: '/create',
+    path: '/upload',
   },
   {
     id: 3,
     name: 'Podcast Widget',
     icon: <Layer />,
-    path: '/widget',
+    path: '/upload',
   },
   {
     id: 4,
     name: 'Upgrade',
     icon: <Diamond />,
-    path: '/upgrade',
+    path: '/upload',
   },
 ];

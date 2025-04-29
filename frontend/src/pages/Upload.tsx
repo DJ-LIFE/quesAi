@@ -2,7 +2,7 @@ import UploadLayout from './newProject/UploadLayout';
 import '../styles/pages/upload.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import usePodcastStore from '../stores/usePodcastStore';
+import usePodcastStore from '../stores/usepodcastStore';
 
 const Upload = () => {
   const [popup, setPopup] = useState(false);
@@ -72,39 +72,41 @@ const Upload = () => {
             </div>
           ))}
         </div>
-        <div className="upload__card">
-          <div className="upload__innerCard">
-            <img src="./exportCloud.svg" alt="upload icon" />
-            <p>
-              Select a file or drag and drop here (Podcast Media or
-              Transcription Text)
-            </p>
-            <p>MP4, MOV, MP3, WAV, PDF, DOCX or TXT file</p>
-            <button onClick={() => setPopup(true)}>Select File</button>
+        
+        {/* Show file uploader only when there are no episodes */}
+        {(!episodes || episodes.length === 0) && !isLoading && !error && (
+          <div className="upload__card">
+            <div className="upload__innerCard">
+              <img src="./exportCloud.svg" alt="upload icon" />
+              <p>
+                Select a file or drag and drop here (Podcast Media or
+                Transcription Text)
+              </p>
+              <p>MP4, MOV, MP3, WAV, PDF, DOCX or TXT file</p>
+              <button onClick={() => setPopup(true)}>Select File</button>
+            </div>
           </div>
-        </div>
-        <div className="data__table">
-          <h5 className="data__title">Uploaded Episodes</h5>
-          {isLoading ? (
-            <div className="loading">Loading episodes...</div>
-          ) : error ? (
-            <div className="error">Error loading episodes: {error}</div>
-          ) : (
-            <table className="uploaded-table">
-              <thead className="table__head">
-                <tr>
-                  <th>No.</th>
-                  <th>Name</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {episodes.length === 0 ? (
+        )}
+        
+        {/* Show episodes table only when there are episodes */}
+        {(episodes && episodes.length > 0 || isLoading || error) && (
+          <div className="data__table">
+            <h5 className="data__title">Uploaded Episodes</h5>
+            {isLoading ? (
+              <div className="loading">Loading episodes...</div>
+            ) : error ? (
+              <div className="error">Error loading episodes: {error}</div>
+            ) : (
+              <table className="uploaded-table">
+                <thead className="table__head">
                   <tr>
-                    <td colSpan={3}>No episodes found. Create a new episode to get started!</td>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Action</th>
                   </tr>
-                ) : (
-                  episodes.map((episode, index) => (
+                </thead>
+                <tbody>
+                  {episodes.map((episode, index) => (
                     <tr key={episode._id}>
                       <td>{index + 1}</td>
                       <td>{episode.title}</td>
@@ -118,12 +120,12 @@ const Upload = () => {
                         <button className="table__delete--button">Delete</button>
                       </td>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          )}
-        </div>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        )}
 
         {popup && (
           <div className="popup__container">

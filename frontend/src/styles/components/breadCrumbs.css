@@ -24,3 +24,15 @@
   justify-content: center;
   cursor: pointer;
 }
+.breadcrumb__label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  text-decoration: none;
+  margin: 0 5px;
+  text-align: center;
+}
+.breadcrumb__label:hover {
+  text-decoration: underline;
+  color: var(--color-primary);
+}

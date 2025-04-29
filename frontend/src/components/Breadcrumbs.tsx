@@ -19,10 +19,10 @@ const Breadcrumbs = () => {
           <span>
             {index === 0 && (
               <span>
-                <img src="/home.svg" alt="Home Icon" />
+                <img src="/home.svg" alt="Home Icon" width={20} height={20} />
               </span>
             )}
-            <Link to={crumb.path}>{crumb.label}</Link>
+            <Link to={crumb.path} className='breadcrumb__label'>{crumb.label}</Link>
           </span>
           {index < breadcrumbs.length - 1 && <span> &gt; </span>}
         </React.Fragment>
