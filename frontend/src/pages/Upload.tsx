@@ -2,7 +2,7 @@ import UploadLayout from './newProject/UploadLayout';
 import '../styles/pages/upload.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import usePodcastStore from '../stores/usepodcastStore';
+import { usePodcastStore } from '../stores/usepodcastStore';
 
 const Upload = () => {
   const [popup, setPopup] = useState(false);

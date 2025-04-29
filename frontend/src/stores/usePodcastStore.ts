@@ -39,7 +39,7 @@ interface PodcastState {
   clearError: () => void;
 }
 
-const usePodcastStore = create<PodcastState>((set) => ({
+export const usePodcastStore = create<PodcastState>((set) => ({
   podcasts: [],
   episodes: [],
   currentPodcast: null,
@@ -188,4 +188,3 @@ const usePodcastStore = create<PodcastState>((set) => ({
   },
 }));
 
-export default usePodcastStore;

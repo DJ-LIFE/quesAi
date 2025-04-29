@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import '../styles/pages/viewPodcast.css';
 import UploadLayout from './newProject/UploadLayout';
 import { useParams, useNavigate } from 'react-router-dom';
-import usePodcastStore from '../stores/usepodcastStore';
+import { usePodcastStore } from '../stores/usepodcastStore';
 
 const ViewPodcast = () => {
   const { podcastId, episodeId } = useParams();

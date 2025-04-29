@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import NewProjectLayout from './NewProjectLayout';
 import '../../styles/pages/dashboard.css';
 import { useNavigate } from 'react-router-dom';
-import usePodcastStore from '../../stores/usePodcastStore';
+import { usePodcastStore } from '../../stores/usepodcastStore';
 
 const Dashboard = () => {
   const navigate = useNavigate();
