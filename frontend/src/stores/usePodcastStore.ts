@@ -39,7 +39,7 @@ interface PodcastState {
   clearError: () => void;
 }
 
-const usePodcastStore = create<PodcastState>((set, get) => ({
+const usePodcastStore = create<PodcastState>((set) => ({
   podcasts: [],
   episodes: [],
   currentPodcast: null,
