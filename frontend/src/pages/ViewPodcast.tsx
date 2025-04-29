@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import '../styles/pages/viewPodcast.css';
 import UploadLayout from './newProject/UploadLayout';
 import { useParams, useNavigate } from 'react-router-dom';
-import { usePodcastStore } from '../stores/usepodcastStore';
+import { usePodcastStore } from '../stores/usePodStore';
 
 const ViewPodcast = () => {
   const { podcastId, episodeId } = useParams();
@@ -30,7 +30,7 @@ const ViewPodcast = () => {
 
   useEffect(() => {
     if (episodes.length > 0 && episodeId) {
-      const currentEpisode = episodes.find(ep => ep._id === episodeId);
+      const currentEpisode = episodes.find((ep) => ep._id === episodeId);
       if (currentEpisode) {
         setTitle(currentEpisode.title);
         setTranscript(currentEpisode.transcript);
@@ -55,7 +55,7 @@ const ViewPodcast = () => {
 
   const handleDiscard = () => {
     // Reset to original values
-    const currentEpisode = episodes.find(ep => ep._id === episodeId);
+    const currentEpisode = episodes.find((ep) => ep._id === episodeId);
     if (currentEpisode) {
       setTitle(currentEpisode.title);
       setTranscript(currentEpisode.transcript);

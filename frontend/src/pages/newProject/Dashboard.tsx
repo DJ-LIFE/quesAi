@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import NewProjectLayout from './NewProjectLayout';
-import '../../styles/pages/dashboard.css';
 import { useNavigate } from 'react-router-dom';
-import { usePodcastStore } from '../../stores/usepodcastStore';
+import '../../styles/pages/dashboard.css';
+import { usePodcastStore } from '../../stores/usePodStore';
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [popup, setPopup] = useState(false);
   const [title, setTitle] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const {
     podcasts,
     fetchPodcasts,
@@ -39,9 +40,23 @@ const Dashboard = () => {
     }
   };
 
-  const handlePodcastClick = (podcast: any) => {
+  const filteredPodcasts = searchQuery.trim() === '' 
+    ? podcasts
+    : podcasts.filter((podcast: { title: string }) => 
+        podcast.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+
+  const createNewProject = () => {
+    setPopup(true);
+  };
+
+  const handlePodcastClick = (podcast: { _id: string; title: string; createdAt: string; episodes: string[] }) => {
     setCurrentPodcast(podcast);
     navigate(`/upload`);
+  };
+
+  const handleSearch = (word: string) => {
+    setSearchQuery(word);
   };
 
   const renderHomeView = () => (
@@ -52,7 +67,7 @@ const Dashboard = () => {
         Turn your passion into a professional podcast. <br />
         Let our AI assistant help you reach a global audience effortlessly!
       </p>
-      <button onClick={() => setPopup(true)}>
+      <button onClick={createNewProject}>
         <span className="button__plus">+</span>Create new project
       </button>
     </div>
@@ -62,7 +77,7 @@ const Dashboard = () => {
     <div className="projects__container">
       <div className="projects__header">
         <h1>Projects</h1>
-        <button onClick={() => setPopup(true)} className="button__create">
+        <button onClick={createNewProject} className="button__create">
           <span className="button__plus">+</span>Create new
         </button>
       </div>
@@ -72,7 +87,7 @@ const Dashboard = () => {
         <div className="error">Error loading podcasts: {error}</div>
       ) : (
         <div className="project__cards">
-          {podcasts.map((podcast) => (
+          {filteredPodcasts.map((podcast) => (
             <div
               key={podcast._id}
               className="project__card"
@@ -82,7 +97,7 @@ const Dashboard = () => {
                 <div className="project__card-icon">
                   {podcast.title
                     .split(' ')
-                    .map((word) => word[0])
+                    .map((word: string) => word[0])
                     .slice(0, 2)
                     .join('').toUpperCase()}
                 </div>
