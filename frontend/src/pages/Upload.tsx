@@ -70,15 +70,15 @@ const Upload = () => {
         {popup && (
           <div className="popup__container">
             <div className="popup__content">
-              <div>
+              <div className='popup__header'>
                 <p>Upload From Youtube</p>{' '}
                 <button onClick={() => setPopup(false)}>X</button>
               </div>
-              <div>
+              <div className="popup__input--container">
                 <label htmlFor="name">Name</label>
                 <input type="text" placeholder="Type Here" />
               </div>
-              <div>
+              <div className="popup__input--container">
                 <label htmlFor="transcript">Transcript</label>
                 <input type="text" placeholder="Type Here" />
               </div>

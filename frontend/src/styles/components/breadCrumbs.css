@@ -7,3 +7,20 @@
 .breadcrumbs__container span {
   margin-right: 5px;
 }
+.breadcrumbs__container--right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.breadcrumbs__notification, .breadcrumbs__logout {
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

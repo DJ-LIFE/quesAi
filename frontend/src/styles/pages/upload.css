@@ -147,4 +147,25 @@
   .table__delete--button:hover {
     background-color: #e53e3e; /* red-500 */
   }
-  
+
+  .popup__content {
+    
+    padding: 20px;
+    background-color: #f7fafc; /* light gray background */
+  }
+  .popup__content p {
+    font-size: 1.5rem;
+    color: #2d3748; /* dark gray */
+    font-weight: 700;
+  }
+  .popup__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .popup__input--container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+  }

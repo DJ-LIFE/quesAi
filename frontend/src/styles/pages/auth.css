@@ -118,3 +118,10 @@
     color: #085FCE;
     text-decoration: underline
 }
+
+.error {
+    color: red;
+    font-size: small;
+    font-weight: 500;
+    
+}
