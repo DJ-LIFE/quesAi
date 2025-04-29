@@ -56,4 +56,30 @@ export const authService = {
     }
 };
 
+export const podcastService = {
+    getPodcasts: async () => {
+        const response = await api.get('/podcasts');
+        return response.data;
+    },
+    createPodcast: async (data: any) => {
+        const response = await api.post('/podcast', data);
+        return response.data;
+    },
+}
+
+export const episodeService = {
+    createEpisode: async(data: any, podcastId: string) => {
+        const response = await api.post(`/podcast/${podcastId}/episode`, data);
+        return response.data;
+    },
+    updateEpisode: async(data:any, podcastId: string, episodeId: string) => {
+        const response = await api.put(`/podcast/${podcastId}/episode/${episodeId}`, data);
+        return response.data;
+    },
+    getAllEpisodes: async() => {
+        const response = await api.get('/podcast/episodes');
+        return response.data;
+    }
+}
+
 export default api;

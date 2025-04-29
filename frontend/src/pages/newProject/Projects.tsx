@@ -1,6 +1,7 @@
 import NewProjectLayout from './NewProjectLayout';
 import '../../styles/pages/projects.css';
 import { useNavigate } from 'react-router-dom';
+
 export const Projects = () => {
     const navigate = useNavigate();
   return (
