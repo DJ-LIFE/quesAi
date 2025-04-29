@@ -1,16 +1,15 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/v1';
+const API_URL = 'https://ques-ai-phi.vercel.app/api/v1';
 
 const api = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 5000,
+  timeout: 50000,
 });
 
-// Modified to use the token from auth-storage in localStorage
 api.interceptors.request.use(
   (config) => {
     // Get the persisted auth state from localStorage
@@ -19,9 +18,7 @@ api.interceptors.request.use(
     
     if (authStorage) {
       try {
-        // Parse the auth storage JSON
         const authState = JSON.parse(authStorage);
-        // Extract token from state
         token = authState.state?.token;
       } catch (e) {
         console.error('Error parsing auth storage', e);
