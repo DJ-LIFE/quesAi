@@ -1,11 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Auth from './pages/Auth';
-import Home from './pages/newProject/Home';
-import { Projects } from './pages/newProject/Projects';
 import Upload from './pages/Upload';
 import ViewPodcast from './pages/ViewPodcast';
 import ProtectedRoute from './components/ProtectedRoute';
 import RouteObserver from './components/RouteObserver';
+import Dashboard from './pages/newProject/Dashboard';
 
 function App() {
   return (
@@ -14,14 +13,9 @@ function App() {
         <RouteObserver />
         <Routes>
           <Route path="/" element={<Auth />} />
-          <Route path="/home" element={
+          <Route path="/dashboard" element={
             <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          } />
-          <Route path="/projects" element={
-            <ProtectedRoute>
-              <Projects />
+              <Dashboard />
             </ProtectedRoute>
           } />
           <Route path="/upload" element={

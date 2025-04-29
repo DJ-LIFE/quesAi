@@ -1,4 +1,3 @@
-
 const jwt = require('jsonwebtoken');
 
 const authMiddleware = (req, res, next) => {
@@ -9,7 +8,17 @@ const authMiddleware = (req, res, next) => {
 
         }
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded;
+        
+        // Make sure decoded contains the id property needed by controllers
+        if (!decoded.id) {
+            return res.status(401).json({message: "Invalid token structure, missing user ID"});
+        }
+        
+        // Set user._id to be compatible with existing controller code
+        req.user = {
+            ...decoded,
+            _id: decoded.id
+        };
         next();
     } catch (error) {
         console.error(error, 'Auth error');

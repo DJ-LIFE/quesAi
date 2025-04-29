@@ -16,38 +16,33 @@ const RouteObserver = () => {
     if (path.startsWith('/upload')) {
       setActiveSidebarItem(1);
       setBreadcrumbs([
-        { path: '/', label: 'Home Page' },
+        { path: '/dashboard', label: 'Dashboard' },
         { path: '/upload', label: 'Add your Podcasts(s)' }
       ]);
     } else if (path.startsWith('/create')) {
       setActiveSidebarItem(2);
       setBreadcrumbs([
-        { path: '/', label: 'Home Page' },
-        { path: '/create', label: 'Create and Repurpose' }
+        { path: '/dashboard', label: 'Dashboard' },
+        { path: '/upload', label: 'Create and Repurpose' }
       ]);
     } else if (path.startsWith('/widget')) {
       setActiveSidebarItem(3);
       setBreadcrumbs([
-        { path: '/', label: 'Home Page' },
-        { path: '/widget', label: 'Podcast Widget' }
+        { path: '/dashboard', label: 'Dashboard' },
+        { path: '/upload', label: 'Podcast Widget' }
       ]);
     } else if (path.startsWith('/upgrade')) {
       setActiveSidebarItem(4);
       setBreadcrumbs([
-        { path: '/', label: 'Home Page' },
-        { path: '/upgrade', label: 'Upgrade' }
+        { path: '/dashboard', label: 'Dashboard' },
+        { path: '/upload', label: 'Upgrade' }
       ]);
-    } else if (path.startsWith('/projects')) {
+    } else if (path.startsWith('/dashboard')) {
       setActiveSidebarItem(null);
       setBreadcrumbs([
-        { path: '/', label: 'Home Page' },
-        { path: '/projects', label: 'Projects' }
+        { path: '/upload', label: 'Dashboard' },
+        { path: '/upload', label: 'Dashboard' }
       ]);
-      
-      // Add a third level if we're in a specific project section
-      if (path.includes('/new')) {
-        updateBreadcrumbs(prev => [...prev, { path: '/projects/new', label: 'New Project' }]);
-      }
     } else if (path === '/') {
       setActiveSidebarItem(null);
       setBreadcrumbs([{ path: '/', label: 'Home Page' }]);
