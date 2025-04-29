@@ -41,8 +41,7 @@ const useAuthStore = create<AuthState>()(
           // Extract token from response
           const { token } = response;
           
-          // Create a user object with available information
-          // In a real scenario, you might want to make another API call to get user details
+          
           const user = {
             id: '', // You might want to decode the JWT or fetch from a profile endpoint
             email: email,
@@ -84,7 +83,7 @@ const useAuthStore = create<AuthState>()(
           
           // Create a user object
           const user = {
-            id: '', // You might want to decode the JWT or fetch from a profile endpoint
+            id: '', 
             name,
             email,
           };

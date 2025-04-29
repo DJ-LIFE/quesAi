@@ -5,6 +5,7 @@ import { Pen } from '../assets/Pen';
 import { Plus } from '../assets/Plus';
 import '../styles/components/sideBar.css';
 import useAuthStore from '../stores/useAuthStore';
+import useNavigationStore from '../stores/useNavigationStore';
 import { useNavigate } from 'react-router-dom';
 
 const SideBar = () => {
@@ -43,11 +44,32 @@ const SideBar = () => {
 export default SideBar;
 
 const SideBarItem = () => {
+  const { activeSidebarItem, setActiveSidebarItem, setBreadcrumbs } = useNavigationStore();
+  const navigate = useNavigate();
+  
+  const handleItemClick = (item: typeof sideBarData[0]) => {
+    setActiveSidebarItem(item.id);
+    
+    // Update breadcrumbs based on the clicked item
+    const newBreadcrumbs = [
+      { path: '/', label: 'Home Page' },
+      { path: item.path, label: item.name }
+    ];
+    
+    setBreadcrumbs(newBreadcrumbs);
+    navigate(item.path);
+  };
+  
   return (
     <>
       {sideBarData.map((item) => {
+        const isActive = activeSidebarItem === item.id;
         return (
-          <div className="sidebar__item" key={item.id}>
+          <div 
+            className={`sidebar__item ${isActive ? 'sidebar__item--active' : ''}`} 
+            key={item.id}
+            onClick={() => handleItemClick(item)}
+          >
             <div className="sidebar__icon">{item.icon}</div>
             <div className="sidebar__name">{item.name}</div>
           </div>
@@ -62,20 +84,24 @@ const sideBarData = [
     id: 1,
     name: 'Add your Podcasts(s)',
     icon: <Plus />,
+    path: '/upload',
   },
   {
     id: 2,
     name: 'Create and Repurpose',
     icon: <Pen />,
+    path: '/create',
   },
   {
     id: 3,
     name: 'Podcast Widget',
     icon: <Layer />,
+    path: '/widget',
   },
   {
     id: 4,
     name: 'Upgrade',
     icon: <Diamond />,
+    path: '/upgrade',
   },
 ];

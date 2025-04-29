@@ -5,11 +5,13 @@ import { Projects } from './pages/newProject/Projects';
 import Upload from './pages/Upload';
 import ViewPodcast from './pages/ViewPodcast';
 import ProtectedRoute from './components/ProtectedRoute';
+import RouteObserver from './components/RouteObserver';
 
 function App() {
   return (
     <>
       <BrowserRouter>
+        <RouteObserver />
         <Routes>
           <Route path="/" element={<Auth />} />
           <Route path="/home" element={
