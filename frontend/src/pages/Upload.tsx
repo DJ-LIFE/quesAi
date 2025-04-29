@@ -2,7 +2,7 @@ import UploadLayout from './newProject/UploadLayout';
 import '../styles/pages/upload.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import usePodcastStore from '../stores/usePodcastStore';
+import usePodcastStore from '../stores/usepodcastStore';
 
 const Upload = () => {
   const [popup, setPopup] = useState(false);
@@ -10,14 +10,14 @@ const Upload = () => {
   const [transcript, setTranscript] = useState('');
   const [popupTitle, setPopupTitle] = useState('Upload Episode');
   const navigate = useNavigate();
-  
-  const { 
-    currentPodcast, 
-    episodes, 
-    fetchEpisodes, 
+
+  const {
+    currentPodcast,
+    episodes,
+    fetchEpisodes,
     createEpisode,
-    isLoading, 
-    error 
+    isLoading,
+    error,
   } = usePodcastStore();
 
   useEffect(() => {
@@ -25,19 +25,19 @@ const Upload = () => {
       navigate('/projects');
       return;
     }
-    
+
     fetchEpisodes(currentPodcast._id);
   }, [currentPodcast, fetchEpisodes, navigate]);
 
   const handleSubmit = async () => {
     if (!currentPodcast || !title.trim() || !transcript.trim()) return;
-    
+
     try {
       await createEpisode(currentPodcast._id, {
         title,
-        transcript
+        transcript,
       });
-      
+
       // Reset form and close popup
       setTitle('');
       setTranscript('');
@@ -58,9 +58,9 @@ const Upload = () => {
         <h1>Add Podcast Episode for {currentPodcast?.title}</h1>
         <div className="uploadData__container">
           {uploadData.map((data, index) => (
-            <div 
-              key={index} 
-              className="uploadData__card" 
+            <div
+              key={index}
+              className="uploadData__card"
               onClick={() => handleCardClick(data.title)}
               style={{ cursor: 'pointer' }}
             >
@@ -72,7 +72,7 @@ const Upload = () => {
             </div>
           ))}
         </div>
-        
+
         {/* Show file uploader only when there are no episodes */}
         {(!episodes || episodes.length === 0) && !isLoading && !error && (
           <div className="upload__card">
@@ -87,9 +87,9 @@ const Upload = () => {
             </div>
           </div>
         )}
-        
+
         {/* Show episodes table only when there are episodes */}
-        {(episodes && episodes.length > 0 || isLoading || error) && (
+        {((episodes && episodes.length > 0) || isLoading || error) && (
           <div className="data__table">
             <h5 className="data__title">Uploaded Episodes</h5>
             {isLoading ? (
@@ -106,21 +106,32 @@ const Upload = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {episodes.map((episode: any, index: number) => (
-                    <tr key={episode._id}>
-                      <td>{index + 1}</td>
-                      <td>{episode.title}</td>
-                      <td className="table__action">
-                        <button 
-                          className="table__view--button" 
-                          onClick={() => navigate(`/podcast/${currentPodcast?._id}/episode/${episode._id}`)}
-                        >
-                          View
-                        </button>
-                        <button className="table__delete--button">Delete</button>
-                      </td>
-                    </tr>
-                  ))}
+                  {episodes.map(
+                    (
+                      episode: { _id: string; title: string },
+                      index: number
+                    ) => (
+                      <tr key={episode._id}>
+                        <td>{index + 1}</td>
+                        <td>{episode.title}</td>
+                        <td className="table__action">
+                          <button
+                            className="table__view--button"
+                            onClick={() =>
+                              navigate(
+                                `/podcast/${currentPodcast?._id}/episode/${episode._id}`
+                              )
+                            }
+                          >
+                            View
+                          </button>
+                          <button className="table__delete--button">
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                  )}
                 </tbody>
               </table>
             )}
@@ -130,23 +141,32 @@ const Upload = () => {
         {popup && (
           <div className="popup__container">
             <div className="popup__content">
-              <div className='popup__header'>
+              <div className="popup__header">
                 <p>{popupTitle}</p>{' '}
-                <button onClick={() => setPopup(false)} style={{backgroundColor: 'transparent', color: 'black', fontSize: '1.2rem'}}>X</button>
+                <button
+                  onClick={() => setPopup(false)}
+                  style={{
+                    backgroundColor: 'transparent',
+                    color: 'black',
+                    fontSize: '1.2rem',
+                  }}
+                >
+                  X
+                </button>
               </div>
               <div className="popup__input--container">
                 <label htmlFor="title">Name</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   id="title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  placeholder="Enter video name" 
+                  placeholder="Enter video name"
                 />
               </div>
               <div className="popup__input--container">
                 <label htmlFor="transcript">Transcript</label>
-                <textarea 
+                <textarea
                   id="transcript"
                   value={transcript}
                   onChange={(e) => setTranscript(e.target.value)}
@@ -155,7 +175,7 @@ const Upload = () => {
                 />
               </div>
               <div className="popup__footer">
-                <button 
+                <button
                   className="upload-btn"
                   onClick={handleSubmit}
                   disabled={isLoading || !title.trim() || !transcript.trim()}
