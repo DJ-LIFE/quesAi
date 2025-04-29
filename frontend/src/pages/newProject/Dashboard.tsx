@@ -55,10 +55,6 @@ const Dashboard = () => {
     navigate(`/upload`);
   };
 
-  const handleSearch = (word: string) => {
-    setSearchQuery(word);
-  };
-
   const renderHomeView = () => (
     <div className="content__container">
       <h2>Create new Project</h2>
