@@ -8,7 +8,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [popup, setPopup] = useState(false);
   const [title, setTitle] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery] = useState('');
   const {
     podcasts,
     fetchPodcasts,
