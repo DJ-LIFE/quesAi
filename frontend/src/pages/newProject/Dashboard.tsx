@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import NewProjectLayout from './NewProjectLayout';
-import '../../styles/pages/dashboard.css'
+import '../../styles/pages/dashboard.css';
 import { useNavigate } from 'react-router-dom';
 import usePodcastStore from '../../stores/usePodcastStore';
 
@@ -8,14 +8,14 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [popup, setPopup] = useState(false);
   const [title, setTitle] = useState('');
-  const { 
-    podcasts, 
-    fetchPodcasts, 
-    createPodcast, 
+  const {
+    podcasts,
+    fetchPodcasts,
+    createPodcast,
     setCurrentPodcast,
-    isLoading, 
-    error, 
-    clearError 
+    isLoading,
+    error,
+    clearError,
   } = usePodcastStore();
 
   useEffect(() => {
@@ -26,10 +26,10 @@ const Dashboard = () => {
     setTitle(e.target.value);
     if (error) clearError();
   };
-  
+
   const onSubmit = async () => {
     if (!title.trim()) return;
-    
+
     try {
       await createPodcast(title);
       setTitle('');
@@ -61,8 +61,8 @@ const Dashboard = () => {
   const renderProjectsView = () => (
     <div className="projects__container">
       <div className="projects__header">
-        <h1>Choose a project</h1>
-        <button onClick={() => setPopup(true)} className='button__create'>
+        <h1>Projects</h1>
+        <button onClick={() => setPopup(true)} className="button__create">
           <span className="button__plus">+</span>Create new
         </button>
       </div>
@@ -79,17 +79,21 @@ const Dashboard = () => {
               onClick={() => handlePodcastClick(podcast)}
             >
               <div className="project__card-header">
+                <div className="project__card-icon">
+                  {podcast.title
+                    .split(' ')
+                    .map((word) => word[0])
+                    .slice(0, 2)
+                    .join('').toUpperCase()}
+                </div>
                 <div className="project__card-title">
                   <h2>{podcast.title}</h2>
-                  <span>{new Date(podcast.createdAt).toLocaleDateString()}</span>
-                </div>
-                <div className="project__card-action">
-                  <img src="./pen.svg" alt="Edit" />
-                </div>
-              </div>
-              <div className="project__card-footer">
-                <div className="project__card-episodes">
-                  <span>Episodes: {podcast.episodes.length}</span>
+                  <span className='project__fileCount'>{podcast.episodes.length} Files</span>
+                  <div className="project__card-episodes">
+                    <span className='project__card--date'>Last edited
+                      {new Date(podcast.createdAt).toLocaleDateString()}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -102,7 +106,9 @@ const Dashboard = () => {
   return (
     <NewProjectLayout>
       {/* Conditionally render based on podcasts existence */}
-      {!isLoading && !error && podcasts.length > 0 ? renderProjectsView() : renderHomeView()}
+      {!isLoading && !error && podcasts.length > 0
+        ? renderProjectsView()
+        : renderHomeView()}
 
       {/* Project creation popup - shared between both views */}
       {popup && (
@@ -121,20 +127,20 @@ const Dashboard = () => {
               {error && <p className="error-text">{error}</p>}
             </div>
             <div className="popup__button">
-              <button 
-                type="button" 
+              <button
+                type="button"
                 onClick={() => {
                   setPopup(false);
                   clearError();
-                }} 
+                }}
               >
                 Cancel
               </button>
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 onClick={onSubmit}
                 disabled={isLoading || !title.trim()}
-                className='popup__create--button'
+                className="popup__create--button"
               >
                 {isLoading ? 'Creating...' : 'Create Podcast'}
               </button>

@@ -10,12 +10,13 @@
     overflow: hidden;   
 }
 .background_img {
-    background-image: url('../../pages/heroImg.svg');
+    background-image: url('./heroImg.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-color: transparent;
     height: 100%;
+    z-index: 100;
 }
 .hero_text {
     color: white;
